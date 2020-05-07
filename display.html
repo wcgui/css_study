@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#display-box {
+                width: 500px;
+                height: 500px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                border: 1px solid #000;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                overflow-y: auto;
+            }
+            #display-box>div {
+                width: 200px;
+                height: 200px;
+            }
+            #display-box>div:hover {
+                outline: 1px solid red;
+            }
+
+		</style>
+	</head>
+	<body>
+		<div id="display-box">
+            
+        </div>
+        <script>
+            let string = "",
+                obj = [
+                    {
+                        name: "wang",
+                        time: "334",
+                    },
+                    {
+                        name: "wang",
+                        time: "334",
+                    },
+                    {
+                        name: "wang",
+                        time: "334",
+                    },
+                    {
+                        name: "wang",
+                        time: "334",
+                    },
+                    {
+                        name: "wang",
+                        time: "334",
+                    },
+                    {
+                        name: "wang",
+                        time: "334",
+                    },
+                    {
+                        name: "wang",
+                        time: "334",
+                    },{
+                        name: "wang",
+                        time: "334",
+                    }
+                ];
+                obj.forEach(item => {
+                    string+=`<div>${name}</div>`;
+                })
+            document.getElementById("display-box").innerHTML = string;
+        </script>
+	</body>
+</html>

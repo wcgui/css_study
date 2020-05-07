@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+        <script>
+            let array = [1,1,'true','true',true,true,15,15,"false",false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a',{},{}];
+
+            /**
+             * @desc 数组去重
+             */
+            function arrays(arr) {
+                let map = new Map(),
+                    array = new Array();
+                
+                for(let i = 0;i<arr.length;i++) {
+                    if(map.has(arr[i])) {
+                        map.set(arr[i],true);
+                    } else {
+                        map.set(arr[i],false);
+                        array.push(arr[i]);
+                    }
+                }
+                return array;
+            }
+            console.log(arrays(array));
+            //数组去重一
+            function arrays1(arr) {
+                return Array.from(new Set(arr));
+            }
+            console.log(arrays1(array));
+            //数组去重2
+            function arrays2(arr) {
+                for(let i = 0;i<arr.length;i++) {
+                    for(let j=i+1;j<arr.length;j++) {
+                        if(arr[i] == arr[j]) {
+                            arr.splice(j,1);
+                            j--;
+                        }
+                    }
+                }
+                return arr;
+            }
+            console.log(arrays2(array));
+            function arrays3(arr) {
+
+                if(!Array.isArray(arr)) {
+                    return false;
+                }
+                let array = new Array();
+
+                arr.forEach(item => {
+                    if(array.indexOf(item) == -1){
+                        array.push(item);
+                    }
+                })
+                return array;
+            }
+            console.log(arrays3(array));
+            function array4(arr) {
+                let obj = {},
+                    array = new Array();
+                for(let i = 0;i<arr.length;i++){
+                    if (!obj[arr[i]]) {
+                    array.push(arr[i])
+                    obj[arr[i]] = 1
+                    } else {
+                    obj[arr[i]]++
+                    }
+                }
+                return array;
+            }
+            console.log(array4(array));
+            function array5(arr) {
+                var obj = {};
+                return arr.filter(function(item, index, arr){
+                    return obj.hasOwnProperty(typeof item + item) ? false : (obj[typeof item + item] = true)
+                })
+            }
+            console.log(array5(array));
+        </script>
+	</body>
+</html>

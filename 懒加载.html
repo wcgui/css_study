@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box {
+			    width: 800px;
+			    height: 400px;
+			    border: 1px solid;
+			    overflow: auto;
+			}
+			
+			.img {
+			    width: 100px;
+			    height: 100px;
+			    border: 1px solid;
+			    display: block;
+			    margin: 40px auto;
+			}
+
+		</style>
+	</head>
+	<body>
+	</body>
+<div class="box">
+    <img style="margin-top: 600px;" class="img" src=""
+        data-src="http://img0.imgtn.bdimg.com/it/u=511793291,3622256371&fm=26&gp=0.jpg"
+        alt="">
+    <img class="img" src=""
+        data-src="http://img1.imgtn.bdimg.com/it/u=3665268933,2545365926&fm=26&gp=0.jpg"
+        alt="">
+    <img class="img" src=""
+        data-src="http://img3.imgtn.bdimg.com/it/u=3518071394,1573821605&fm=26&gp=0.jpg"
+        alt="">
+    <img class="img" src=""
+        data-src="http://img2.imgtn.bdimg.com/it/u=2319443838,1488652334&fm=26&gp=0.jpg"
+        alt="">
+    <img class="img" src=""
+        data-src="http://img0.imgtn.bdimg.com/it/u=3661310956,1866096876&fm=26&gp=0.jpg"
+        alt="">
+    <img class="img" src=""
+        data-src="http://img3.imgtn.bdimg.com/it/u=2091392660,1955770237&fm=26&gp=0.jpg"
+        alt="">
+    <img class="img" src=""
+        data-src="https://user-gold-cdn.xitu.io/2019/9/7/16d0a7d2033996bc?w=500&h=325&f=jpeg&s=9951"
+        alt="">
+</div>
+<script>
+	
+	const box = document.querySelector(".box"),
+		  imgs = document.querySelectorAll(".img");
+		  
+//	box.addEventListener("scroll",() => {
+//		let scrollTop = box.scrollTop,
+//			divHeight = box.clientHeight;
+//			
+//		[].forEach.call(imgs,(item,key) => {
+//			console.log(item);
+//			if(item.offsetTop < divHeight + scrollTop) {
+//				item.src= item.getAttribute("data-src");
+//			}
+//		})
+//	});
+	const observer = new IntersectionObserver(entries => {
+		console.log(entries);
+		
+		entries.forEach(item => {
+			console.log(item);
+			
+			if(item.isIntersecting) {
+				item.target.src = item.target.dataset.src;
+				observer.unobserve(item.target);
+			}
+		});
+	},{
+		root: box,
+		rootMargin: '20px 0px 100px 0px'
+	});
+	imgs.forEach(item => {
+		console.log(item,observer);
+		observer.observe(item);
+	})
+	
+</script>
+</html>

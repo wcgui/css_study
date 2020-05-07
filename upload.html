@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.input-box{
+			    width:90%;
+			    height:35px;
+			    text-align: left;
+			    margin:20px auto;
+			    position: relative;
+			}
+			.select-file{
+			    width: 145px;
+			    height: 35px;
+			    border-radius: 5px;
+			    box-sizing: border-box;
+			    line-height: 35px;
+			    font-size: 14px;
+			    overflow: hidden;
+			    background:#3c8dbc ;
+			    color:#fff;
+			    cursor: pointer;
+			    border:0px;
+			    outline:0px;  
+			    position: absolute;
+			    left:0px;
+			    top:0px;
+			    text-overflow:ellipsis;
+			    overflow:hidden;
+			    white-space:nowrap;
+			}
+			.select-file:hover{
+			    background-color:#2e7299;
+			}
+			#File{
+			    opacity:0;
+			    width:145px;
+			    height:35px;
+			    cursor:pointer;
+			    position:absolute;
+			    top:0px;
+			    left:0px;
+			}
+		</style>
+		<script src="upload/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="input-box">
+			<button class="select-file">选择文件</button>
+			<input type="file" id="File">
+		</div>
+		<textarea><img src="./upload/images/add_pictures.png"></textarea>
+		<script>
+			 $(".input-box").on("change","#File",function(){
+                let formData = new FormData();
+                formData.append("container",this.files[0]);
+                $.ajax({
+                    type: "post",
+                    url: "http://172.26.1.233:9000",
+                    async: true,
+                    type: "post",
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function(data) {
+                        console.log(data);
+                    },
+                    error: function(err){
+                        console.log(err);
+                    }
+                })
+            });
+		</script>
+	</body>
+</html>
